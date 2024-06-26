@@ -5,6 +5,8 @@ const cors = require("cors");
 const app = express();
 const config = require("./config");
 const teamRouter = require("./routes/team");
+const employeeRouter = require("./routes/employees");
+
 
 mongoose.connect(config.mongodbUri, {
   useNewUrlParser: true,
@@ -21,6 +23,8 @@ app.get("/", async (req, res) => {
 });
 
 app.use("/api/team",teamRouter);
+app.use("/api/employee",employeeRouter);
+
 
 app.listen(config.port, () => {
   console.log(`server started on port ${config.port}`);

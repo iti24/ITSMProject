@@ -1,18 +1,21 @@
 const express = require("express");
 const router = express.Router();
 const {
-  addTeam,
+  createTeam,
+  addEmployeesToTeam,
+  removeEmployeesFromTeam,
   getAllTeams,
-  getTeamById,
+  getTeamWithEmployeesById,
   updateTeam,
-  deleteTeam,
+  deleteTeam
 } = require("../controllers/team"); 
 
 // Define routes for CRUD operations on teams
-router.post("/", addTeam);
-router.get("/", getAllTeams);
-router.get("/:id", getTeamById);
-router.put("/:id", updateTeam);
+router.post('/', createTeam);
+router.patch('/:id', addEmployeesToTeam);
+router.patch('/:id/employees/remove', removeEmployeesFromTeam);
+router.get('/:id', getTeamWithEmployeesById);
+router.put('/:id', updateTeam);
 router.delete("/:id", deleteTeam);
-
+router.get("/", getAllTeams);
 module.exports = router;
